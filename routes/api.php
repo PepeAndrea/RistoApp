@@ -23,3 +23,12 @@ Route::get('/ristoranti', function () {
     $risto = Restourant::all()->toJson();
     return $risto;
 });
+
+Route::post('/aggiungi', function (Request $req) {
+    $risto = new Restourant;
+    $risto->name = $req->nome;
+    $risto->address = $req->indirizzo;
+    $risto->email = $req->email;
+    $risto->save();
+    return response([$risto,"Ristorante aggiunto"],200);
+});
